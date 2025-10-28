@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthLayout from "../../components/layouts/AuthLayout";
 import Input from "../../components/Inputs/Input";
-import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
+// import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
 import { validateEmail } from "../../Utils/helper";
 import axiosInstance from "../../Utils/axiosInstance";
 import { API_PATHS } from "../../Utils/apiPaths";
@@ -11,7 +11,9 @@ import { UserContext } from "../../context/UserContext";
 
 const Signup = () => {
   // const [profilePic, setProfilePic] = useState(null);
+
   const [fullName, setFullName] = useState("");
+  const [profileImageUrl, setProfileImageUrl] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -39,7 +41,7 @@ const Signup = () => {
         fullName,
         email,
         password,
-        // profileImageUrl,
+        profileImageUrl,
       });
 
       const { token, user } = res.data;
@@ -65,7 +67,7 @@ const Signup = () => {
 
         <form onSubmit={handleSignUp}>
           {/* <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} /> */}
-          <div >
+          <div>
             <Input
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -81,6 +83,13 @@ const Signup = () => {
               type='text'
             />
             <div>
+              <Input
+                value={profileImageUrl}
+                onChange={(e) => setProfileImageUrl(e.target.value)}
+                label='Image url'
+                placeholder='https://something.jep'
+                type='text'
+              />
               <Input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
