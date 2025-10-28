@@ -10,15 +10,10 @@ dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const app = express();
 
-// Create uploads folder if it doesn't exist
 const uploadsDir = path.join(__dirname, "uploads");
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir);
-  console.log("📁 Created uploads folder");
-}
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -41,7 +36,6 @@ app.use(
   })
 );
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -54,9 +48,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api/v1", router);
-
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 
 async function start() {
   try {

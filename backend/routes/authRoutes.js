@@ -15,25 +15,22 @@ router.post("/login", loginUser);
 router.get("/getUser", protect, getUserInfo);
 
 router.post("/upload-image", (req, res) => {
-  console.log("from updlo", req.file)
-  // upload.single("image")(req, res, (err) => {
-  //   if (err) {
-  //     // Multer error (file too large, wrong type)
-  //     return res.status(400).json({ message: err.message });
-  //   }
+  upload.single("image")(req, res, (err) => {
+    if (err) {
+      return res.status(400).json({ message: err.message });
+    }
 
-  //   if (!req.file) {
-  //     return res.status(400).json({ message: "No file uploaded" });
-  //   }
+    if (!req.file) {
+      console.error("⚠️ No file found in request");
+      return res.status(400).json({ message: "No file uploaded" });
+    }
 
-  //   try {
-  //     const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
-  //     return res.status(200).json({ imageUrl });
-  //   } catch (error) {
-  //     console.error("Error generating image URL:", error);
-  //     return res.status(500).json({ message: "Server error. Please try again later." });
-  //   }
-  // });
+    const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
+      req.file.filename
+    }`;
+    console.log("✅ File uploaded:", req.file);
+    res.status(200).json({ imageUrl });
+  });
 });
 
 export const AuthRouter = router
