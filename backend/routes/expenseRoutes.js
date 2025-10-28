@@ -11,4 +11,4 @@ router.get("/downloadexcel", protect, downloadExpenseExcel);
 router.delete("/:id", protect, deleteExpense);
 
 
-export default router;
+export const ExpenseRouter = router

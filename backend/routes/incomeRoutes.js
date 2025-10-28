@@ -1,7 +1,11 @@
 import { Router } from "express";
 import { protect } from "../middleware/authMiddleware.js";
-import { addIncome, deleteIncome, downloadIncomeExcel, getAllIncome } from "../controllers/incomeController.js";
-
+import {
+  addIncome,
+  deleteIncome,
+  downloadIncomeExcel,
+  getAllIncome,
+} from "../controllers/incomeController.js";
 
 const router = Router();
 
@@ -10,5 +14,4 @@ router.get("/get", protect, getAllIncome);
 router.get("/downloadexcel", protect, downloadIncomeExcel);
 router.delete("/:id", protect, deleteIncome);
 
-
-export default router;
+export const IncomeRouter = router;

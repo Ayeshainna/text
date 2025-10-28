@@ -10,6 +10,6 @@ const IncomeSchema = new Schema({
     date: { type:Date, default: Date.now},
 }, {timestamps: true});
 
-const Income = model("Income",IncomeSchema);
-export { Income };
+export const Income = model("Income", IncomeSchema);
+
 
