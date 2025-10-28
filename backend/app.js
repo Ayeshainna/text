@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import { connectDB } from "./config/db.js";
 import { router } from "./routes/index.js";
@@ -11,6 +12,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+// Create uploads folder if it doesn't exist
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+  console.log("📁 Created uploads folder");
+}
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -48,6 +56,7 @@ app.get("/health", (req, res) => {
 app.use("/api/v1", router);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 
 async function start() {
   try {

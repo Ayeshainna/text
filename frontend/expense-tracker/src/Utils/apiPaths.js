@@ -1,4 +1,4 @@
-// export const BASE_URL = "https://backend-six-psi-41.vercel.app";
+// export const BASE_URL = "https://expense-tracker-istt.vercel.app";
 export const BASE_URL = "http://localhost:8000";
 
 // Utils/apiPaths.js
