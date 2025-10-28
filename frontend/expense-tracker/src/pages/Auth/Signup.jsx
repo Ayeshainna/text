@@ -1,4 +1,4 @@
-import React ,{ useState } from 'react'
+import { useState } from 'react'
 import AuthLayout from '../../components/layouts/AuthLayout'
 import {Link, useNavigate} from "react-router-dom"
 import Input from '../../components/Inputs/Input'
@@ -7,8 +7,8 @@ import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector"
 import axiosInstance from '../../Utils/axiosInstance'
 import { API_PATHS } from '../../Utils/apiPaths'
 import { useContext } from 'react'
-import { UserContext } from '../../context/userContext'
 import uploadImage from '../../Utils/uploadImage'
+import { UserContext } from '../../context/UserContext'
 
 const Signup = () => {
   const[profilePic,setProfilePic]=useState(null);
