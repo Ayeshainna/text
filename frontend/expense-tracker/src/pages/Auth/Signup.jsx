@@ -6,11 +6,11 @@ import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
 import { validateEmail } from "../../Utils/helper";
 import axiosInstance from "../../Utils/axiosInstance";
 import { API_PATHS } from "../../Utils/apiPaths";
-import uploadImage from "../../Utils/uploadImage";
+// import uploadImage from "../../Utils/uploadImage";
 import { UserContext } from "../../context/UserContext";
 
 const Signup = () => {
-  const [profilePic, setProfilePic] = useState(null);
+  // const [profilePic, setProfilePic] = useState(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,18 +28,18 @@ const Signup = () => {
       if (!password) throw new Error("Please enter a password");
 
       setError("");
-      let profileImageUrl = "";
+      // let profileImageUrl = "";
 
-      if (profilePic) {
-        const imgUploadRes = await uploadImage(profilePic);
-        profileImageUrl = imgUploadRes.imageUrl;
-      }
+      // if (profilePic) {
+      //   const imgUploadRes = await uploadImage(profilePic);
+      //   profileImageUrl = imgUploadRes.imageUrl;
+      // }
 
       const res = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
         fullName,
         email,
         password,
-        profileImageUrl,
+        // profileImageUrl,
       });
 
       const { token, user } = res.data;
@@ -64,8 +64,8 @@ const Signup = () => {
         </p>
 
         <form onSubmit={handleSignUp}>
-          <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+          {/* <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} /> */}
+          <div >
             <Input
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -80,7 +80,7 @@ const Signup = () => {
               placeholder='abc@example.com'
               type='text'
             />
-            <div className='col-span-2'>
+            <div>
               <Input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
